@@ -22,7 +22,8 @@ def get_random_astronomy_data():
 
 def display_ascii_art(entity_name):
     # Use a fixed-width font for better alignment
-    figlet = Figlet(font='block', justify='center')
+    chosen_font = random.choice(['block', 'standard', 'big', 'script', 'colossal', 'slant'])
+    figlet = Figlet(font=chosen_font, justify='center')
     ascii_art = figlet.renderText(entity_name)
     
     # Randomize the location within the terminal
@@ -37,6 +38,7 @@ def display_ascii_art(entity_name):
 
     # Print colored ASCII art at the specified position
     print('\033[{};{}H{}'.format(row_position, column_position, colored(ascii_art, color)))
+
 
 def main():
     while True:
