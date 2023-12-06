@@ -22,10 +22,10 @@ def get_random_astronomy_data():
 
 def display_stylized_text(entity_name):
     # Randomly choose a color for the text
-    color = random.choice(['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'])
+    color = random.choice(['yellow', 'white'])
     
     # Randomly choose a font style
-    font_style = random.choice(['block', 'colossal', 'banner', 'graffiti'])
+    font_style = random.choice(['colossal'])
 
     # Create a Figlet instance with the chosen font style
     figlet = Figlet(font=font_style, justify='center')
