@@ -2,8 +2,8 @@ import requests
 import random
 import os
 import time
-from pyfiglet import Figlet
 from termcolor import colored
+from pyfiglet import Figlet
 
 def clear_screen():
     os.system('clear')  # For Linux
@@ -20,25 +20,21 @@ def get_random_astronomy_data():
         print(f"Failed to fetch data. Status code: {response.status_code}")
         return None
 
-def display_ascii_art(entity_name):
-    # Use a fixed-width font for better alignment
-    chosen_font = random.choice(['block', 'standard', 'big', 'script', 'colossal', 'slant'])
-    figlet = Figlet(font=chosen_font, justify='center')
-    ascii_art = figlet.renderText(entity_name)
-    
-    # Randomize the location within the terminal
-    rows, columns = os.popen('stty size', 'r').read().split()
-    rows, columns = int(rows), int(columns)
-    
-    row_position = random.randint(1, rows-10)
-    column_position = random.randint(1, columns-len(ascii_art.split('\n')[0]))
-
-    # Randomly choose a color for the font
+def display_stylized_text(entity_name):
+    # Randomly choose a color for the text
     color = random.choice(['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'])
+    
+    # Randomly choose a font style
+    font_style = random.choice(['block', 'colossal', 'banner', 'graffiti'])
 
-    # Print colored ASCII art at the specified position
-    print('\033[{};{}H{}'.format(row_position, column_position, colored(ascii_art, color)))
+    # Create a Figlet instance with the chosen font style
+    figlet = Figlet(font=font_style, justify='center')
+    
+    # Render the ASCII art
+    ascii_art = figlet.renderText(entity_name)
 
+    # Print colored and stylized text
+    print(colored(ascii_art, color))
 
 def main():
     while True:
@@ -46,7 +42,7 @@ def main():
         random_entity = get_random_astronomy_data()
 
         if random_entity:
-            display_ascii_art(random_entity)
+            display_stylized_text(random_entity)
 
         time.sleep(2)
 
