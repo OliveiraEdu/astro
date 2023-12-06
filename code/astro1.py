@@ -1,7 +1,8 @@
 import requests
-import random  # Add this line to import the random module
+import random
 import os
 import time
+from pyfiglet import Figlet  # Import Figlet from pyfiglet
 
 def clear_screen():
     os.system('clear')  # For Linux
@@ -18,13 +19,18 @@ def get_random_astronomy_data():
         print(f"Failed to fetch data. Status code: {response.status_code}")
         return None
 
+def display_ascii_art(entity_name):
+    figlet = Figlet()
+    ascii_art = figlet.renderText(entity_name)
+    print(ascii_art)
+
 def main():
     while True:
         clear_screen()
         random_entity = get_random_astronomy_data()
 
         if random_entity:
-            print("Random Space Entity: {}".format(random_entity))
+            display_ascii_art(random_entity)
 
         time.sleep(2)  # Adjust the sleep duration as needed
 
