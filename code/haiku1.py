@@ -1,33 +1,20 @@
-import requests
 import random
-import os
-import time
-from termcolor import colored
-
-def clear_screen():
-    os.system('clear')  # For Linux
+from gutenberg.acquire import load_etext
+from gutenberg.cleanup import strip_headers
 
 def get_random_haiku():
-    api_url = "https://haiku.kimonolabs.com/"
-    response = requests.get(api_url)
-    
-    if response.status_code == 200:
-        data = response.json()
-        random_haiku = random.choice(data['haikus'])
-        return random_haiku
-    else:
-        print(f"Failed to fetch haiku. Status code: {response.status_code}")
-        return None
+    # IDs for haikus or poems in the Project Gutenberg collection
+    haiku_ids = [5732, 2049, 768, 53688, 2189]  # Example IDs; add more as needed
 
-def display_stylized_text(text):
-    # Randomly choose a color for the text
-    color = random.choice(['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'])
-    
-    # Randomly choose a font style
-    font_style = random.choice(['block', 'colossal', 'banner', 'graffiti'])
+    # Choose a random haiku ID
+    random_haiku_id = random.choice(haiku_ids)
 
-    # Print colored and stylized text
-    print(colored(text, color))
+    # Fetch and clean the text
+    haiku_text = strip_headers(load_etext(random_haiku_id)).strip()
+
+    return haiku_text
+
+# Rest of the code remains unchanged
 
 def main():
     while True:
