@@ -2,7 +2,7 @@ import requests
 import random
 import os
 import time
-from pyfiglet import Figlet  # Import Figlet from pyfiglet
+from pyfiglet import Figlet
 
 def clear_screen():
     os.system('clear')  # For Linux
@@ -20,9 +20,19 @@ def get_random_astronomy_data():
         return None
 
 def display_ascii_art(entity_name):
-    figlet = Figlet()
+    figlet = Figlet(width=random.randint(80, 120),  # Random width for font
+                   font=random.choice(['standard', 'block', 'colossal', 'slant', 'big', 'script']),
+                   justify='center')
     ascii_art = figlet.renderText(entity_name)
-    print(ascii_art)
+    
+    # Randomize the location within the terminal
+    rows, columns = os.popen('stty size', 'r').read().split()
+    rows, columns = int(rows), int(columns)
+    
+    row_position = random.randint(1, rows-10)  # Ensure some margin at the bottom
+    column_position = random.randint(1, columns-len(ascii_art.split('\n')[0]))
+
+    print('\033[{};{}H{}'.format(row_position, column_position, ascii_art))  # Move cursor to specified position
 
 def main():
     while True:
