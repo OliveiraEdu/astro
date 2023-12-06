@@ -3,6 +3,7 @@ import random
 import os
 import time
 from pyfiglet import Figlet
+from termcolor import colored  # Import colored from termcolor
 
 def clear_screen():
     os.system('clear')  # For Linux
@@ -20,7 +21,7 @@ def get_random_astronomy_data():
         return None
 
 def display_ascii_art(entity_name):
-    figlet = Figlet(width=random.randint(80, 120),  # Random width for font
+    figlet = Figlet(width=random.randint(80, 120),
                    font=random.choice(['standard', 'block', 'colossal', 'slant', 'big', 'script']),
                    justify='center')
     ascii_art = figlet.renderText(entity_name)
@@ -29,10 +30,14 @@ def display_ascii_art(entity_name):
     rows, columns = os.popen('stty size', 'r').read().split()
     rows, columns = int(rows), int(columns)
     
-    row_position = random.randint(1, rows-10)  # Ensure some margin at the bottom
+    row_position = random.randint(1, rows-10)
     column_position = random.randint(1, columns-len(ascii_art.split('\n')[0]))
 
-    print('\033[{};{}H{}'.format(row_position, column_position, ascii_art))  # Move cursor to specified position
+    # Randomly choose a color for the font
+    color = random.choice(['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'])
+
+    # Print colored ASCII art at the specified position
+    print('\033[{};{}H{}'.format(row_position, column_position, colored(ascii_art, color)))
 
 def main():
     while True:
@@ -42,7 +47,7 @@ def main():
         if random_entity:
             display_ascii_art(random_entity)
 
-        time.sleep(2)  # Adjust the sleep duration as needed
+        time.sleep(2)
 
 if __name__ == "__main__":
     main()
