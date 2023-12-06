@@ -3,7 +3,7 @@ import random
 import os
 import time
 from pyfiglet import Figlet
-from termcolor import colored  # Import colored from termcolor
+from termcolor import colored
 
 def clear_screen():
     os.system('clear')  # For Linux
@@ -21,9 +21,8 @@ def get_random_astronomy_data():
         return None
 
 def display_ascii_art(entity_name):
-    figlet = Figlet(width=random.randint(80, 120),
-                   font=random.choice(['standard', 'block', 'colossal', 'slant', 'big', 'script']),
-                   justify='center')
+    # Use a fixed-width font for better alignment
+    figlet = Figlet(font='block', justify='center')
     ascii_art = figlet.renderText(entity_name)
     
     # Randomize the location within the terminal
