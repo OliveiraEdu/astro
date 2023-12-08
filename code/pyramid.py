@@ -2,7 +2,7 @@ def draw_sierpinski_triangle(order, size, x, y):
     if order == 0:
         # Draw a filled triangle
         for i in range(int(size)):
-            spaces = " " * (int(size) - i - 1)
+            spaces = " " * int((size - i - 1) * 1.5)
             triangles = "*" * (2 * i + 1)
             print(spaces + triangles)
     else:
