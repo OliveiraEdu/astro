@@ -1,39 +1,37 @@
-import turtle
+import pygame
+import sys
 
-def sierpinski_triangle(turtle, order, size):
+def draw_sierpinski_triangle(surface, order, size, x, y):
     if order == 0:
-        for _ in range(3):
-            turtle.forward(size)
-            turtle.left(120)
+        # Draw a filled triangle
+        pygame.draw.polygon(surface, (255, 255, 255), [(x, y), (x + size, y), (x + size / 2, y - size * 0.866)])
     else:
-        size /= 2
-        sierpinski_triangle(turtle, order - 1, size)
-        turtle.forward(size)
-        sierpinski_triangle(turtle, order - 1, size)
-        turtle.backward(size)
-        turtle.left(60)
-        turtle.forward(size)
-        turtle.right(60)
-        sierpinski_triangle(turtle, order - 1, size)
-        turtle.left(60)
-        turtle.backward(size)
-        turtle.right(60)
+        # Recursively draw three smaller triangles
+        draw_sierpinski_triangle(surface, order - 1, size / 2, x, y)
+        draw_sierpinski_triangle(surface, order - 1, size / 2, x + size / 2, y)
+        draw_sierpinski_triangle(surface, order - 1, size / 2, x + size / 4, y - size * 0.866 / 2)
 
 def main():
-    window = turtle.Screen()
-    window.bgcolor("white")
+    pygame.init()
 
-    fractal_turtle = turtle.Turtle()
-    fractal_turtle.speed(2)
-    fractal_turtle.penup()
-    fractal_turtle.goto(-150, -150)
-    fractal_turtle.pendown()
+    width, height = 800, 600
+    screen = pygame.display.set_mode((width, height))
+    pygame.display.set_caption("Sierpinski Triangle")
 
-    order = 3  # You can adjust the order of the Sierpinski Triangle
+    order = 3  # Adjust the order of the Sierpinski Triangle
 
-    sierpinski_triangle(fractal_turtle, order, 300)
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 
-    window.exitonclick()
+        screen.fill((0, 0, 0))
+
+        draw_sierpinski_triangle(screen, order, 400, 200, 600)
+
+        pygame.display.flip()
+        pygame.time.delay(1000)  # Delay to observe the result
 
 if __name__ == "__main__":
     main()
