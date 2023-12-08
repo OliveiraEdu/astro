@@ -32,12 +32,13 @@ def main():
     height = 24
     x_min, x_max = -2, 1
     y_min, y_max = -1, 1
-    max_iter = 50
+    initial_max_iter = 50
 
-    while True:
+    for i in range(1, 20):  # Update max_iter for 20 iterations
+        max_iter = initial_max_iter + i * 10
         clear_screen()
         display_mandelbrot(width, height, x_min, x_max, y_min, y_max, max_iter)
-        time.sleep(2)
+        time.sleep(1)
 
 if __name__ == "__main__":
     main()
