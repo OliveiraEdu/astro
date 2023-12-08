@@ -34,11 +34,13 @@ def main():
     y_min, y_max = -1, 1
     initial_max_iter = 50
 
-    for i in range(1, 20):  # Update max_iter for 20 iterations
+    i = 0
+    while True:
         max_iter = initial_max_iter + i * 10
         clear_screen()
         display_mandelbrot(width, height, x_min, x_max, y_min, y_max, max_iter)
         time.sleep(1)
+        i += 1
 
 if __name__ == "__main__":
     main()
