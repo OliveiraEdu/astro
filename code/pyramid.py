@@ -12,8 +12,8 @@ def draw_sierpinski_triangle(order, size, x, y):
         draw_sierpinski_triangle(order - 1, size / 2, x + size / 4, y - size * 0.866 / 2)
 
 def main():
-    order = 1  # Adjust the order of the Sierpinski Triangle
-    size = 8  # Adjust the size of the triangle
+    order = 10  # Adjust the order of the Sierpinski Triangle
+    size = 100  # Adjust the size of the triangle
     draw_sierpinski_triangle(order, size, 0, 0)
 
 if __name__ == "__main__":
