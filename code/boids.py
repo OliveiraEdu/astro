@@ -69,7 +69,7 @@ while True:  # Run infinitely
                     if boid is leader:
                         row += f'\033[91mO\033[0m'  # Red color for leader
                     else:
-                        row += "o"
+                        row += "*"
                     break
             else:
                 row += " "
