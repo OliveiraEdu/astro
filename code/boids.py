@@ -90,8 +90,9 @@ while running:
             running = False
 
     # Update boids
-    for boid in flock:
+    for i, boid in enumerate(flock):
         boid.update(flock)
+        print(f"Updating boid {i + 1}/{NUM_BOIDS}", end='\r')  # Print progress on the same line
 
     # Draw boids
     screen.fill(BLACK)
@@ -101,4 +102,5 @@ while running:
     pygame.display.flip()
     clock.tick(FPS)
 
+print("\nSimulation complete!")
 pygame.quit()
