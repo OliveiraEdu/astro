@@ -2,12 +2,9 @@ import colorama
 import os
 import math
 import time
-import random  # Add this line to import the random module
+import random
 
 colorama.init(autoreset=True)
-
-# ... (rest of the code remains unchanged)
-
 
 def clear_screen():
     os.system('clear' if os.name == 'posix' else 'cls')
@@ -38,7 +35,7 @@ def koch_snowflake(iterations, length):
 
     return points
 
-def display_koch_snowflake(points):
+def display_koch_snowflake(width, height, points):
     for row in range(height):
         for col in range(width):
             if (col, row) in points:
@@ -59,7 +56,7 @@ def main():
         iterations = random.randint(2, 5)
         length = min(width, height) - 1
         points = koch_snowflake(iterations, length)
-        display_koch_snowflake(points)
+        display_koch_snowflake(width, height, points)
 
         time.sleep(2)
 
