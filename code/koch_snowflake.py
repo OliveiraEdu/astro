@@ -38,7 +38,7 @@ def koch_snowflake(iterations, length):
 def display_koch_snowflake(width, height, points):
     for row in range(height):
         for col in range(width):
-            if (col, row) in points:
+            if (round(col), round(row)) in points:
                 print(colorama.Back.RED + ' ', end='')
             else:
                 print(colorama.Back.BLACK + ' ', end='')
