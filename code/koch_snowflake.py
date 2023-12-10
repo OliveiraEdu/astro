@@ -44,6 +44,8 @@ def display_koch_snowflake(width, height, points):
                 print(colorama.Back.BLACK + ' ', end='')
         print()
 
+# ...
+
 def main():
     try:
         width, height = os.get_terminal_size()
@@ -58,7 +60,10 @@ def main():
         points = koch_snowflake(iterations, length)
         display_koch_snowflake(width, height, points)
 
-        time.sleep(2)
+        time.sleep(5)  # Adjust the sleep duration as needed
+
+# ...
+
 
 if __name__ == "__main__":
     main()
