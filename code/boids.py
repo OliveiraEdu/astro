@@ -5,10 +5,9 @@ import time
 
 # Constants
 WIDTH, HEIGHT = 80, 20
-NUM_BOIDS = 5
+NUM_BOIDS = 10  # Increase the number of boids
 BOID_SPEED = 2
 NEIGHBOR_DISTANCE = 5
-NUM_ITERATIONS = 500
 
 # Boid class
 class Boid:
@@ -48,8 +47,7 @@ class Boid:
 flock = [Boid() for _ in range(NUM_BOIDS)]
 
 # Main loop
-iteration = 0
-while iteration < NUM_ITERATIONS:
+while True:  # Run infinitely
     os.system('clear')  # For Linux
 
     # Update boids
@@ -70,5 +68,3 @@ while iteration < NUM_ITERATIONS:
 
     # Wait for a short time to observe the movement
     time.sleep(0.1)
-
-    iteration += 1
