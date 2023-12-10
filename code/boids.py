@@ -36,6 +36,9 @@ class Boid:
 
         self.angle += separation_vector + alignment_vector + cohesion_vector
 
+        # Normalize angle to stay within [0, 2*pi)
+        self.angle %= 2 * np.pi
+
         # Move boid based on angle (with wrapping around screen)
         self.x += BOID_SPEED * np.cos(self.angle)
         self.y += BOID_SPEED * np.sin(self.angle)
