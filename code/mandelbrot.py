@@ -46,12 +46,16 @@ def main():
     except:
         width, height = 80, 24  # Default size if terminal size cannot be determined
 
-    x_min, x_max = -2, 1
-    y_min, y_max = -1, 1
-    max_iter = 50
-
     while True:
         clear_screen()
+
+        # Adjust parameters dynamically
+        x_min = random.uniform(-2, -1)
+        x_max = random.uniform(0, 1)
+        y_min = random.uniform(-1, 0)
+        y_max = random.uniform(1, 2)
+        max_iter = random.randint(30, 70)
+
         pixels = generate_mandelbrot(width, height, x_min, x_max, y_min, y_max, max_iter)
         display_mandelbrot(pixels)
         time.sleep(0.5)
