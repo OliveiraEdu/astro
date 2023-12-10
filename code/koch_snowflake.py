@@ -2,8 +2,12 @@ import colorama
 import os
 import math
 import time
+import random  # Add this line to import the random module
 
 colorama.init(autoreset=True)
+
+# ... (rest of the code remains unchanged)
+
 
 def clear_screen():
     os.system('clear' if os.name == 'posix' else 'cls')
