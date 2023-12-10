@@ -29,16 +29,21 @@ class Boid:
         self.y = random.randint(0, HEIGHT)
         self.angle = random.uniform(0, 2 * math.pi)
 
-    def update(self, flock):
-        separation_vector = self.separation(flock)
-        alignment_vector = self.alignment(flock)
-        cohesion_vector = self.cohesion(flock)
+def update(self, flock):
+    separation_vector = self.separation(flock)
+    alignment_vector = self.alignment(flock)
+    cohesion_vector = self.cohesion(flock)
 
-        self.angle += separation_vector + alignment_vector + cohesion_vector
+    self.angle += separation_vector + alignment_vector + cohesion_vector
 
-        # Move boid based on angle (with wrapping around screen)
-        self.x += BOID_SPEED * math.cos(self.angle) % WIDTH
-        self.y += BOID_SPEED * math.sin(self.angle) % HEIGHT
+    # Move boid based on angle (with wrapping around screen)
+    self.x += BOID_SPEED * math.cos(self.angle)
+    self.y += BOID_SPEED * math.sin(self.angle)
+
+    # Wrap around screen
+    self.x %= WIDTH
+    self.y %= HEIGHT
+
 
     def separation(self, flock):
         separation_vector = 0
