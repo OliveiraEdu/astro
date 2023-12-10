@@ -28,7 +28,7 @@ def generate_bezier_curve(width, height, control_points):
             points.append((x, y))
     return points
 
-def display_bezier_curve(height, points):
+def display_bezier_curve(width, height, points):
     for row in range(height):
         for col in range(width):
             if (col, row) in points:
@@ -51,9 +51,10 @@ def main():
 
         # Generate and display the Bezier curve
         points = generate_bezier_curve(width, height, control_points)
-        display_bezier_curve(height, points)
+        display_bezier_curve(width, height, points)
 
         time.sleep(0.5)
+
 
 if __name__ == "__main__":
     main()
