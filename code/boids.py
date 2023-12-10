@@ -1,22 +1,14 @@
-import pygame
 import random
 import numpy as np
-
-# Initialize Pygame
-pygame.init()
+import os
+import time
 
 # Constants
-WIDTH, HEIGHT = 800, 600
-FPS = 60
-NUM_BOIDS = 50
-BOID_RADIUS = 5
+WIDTH, HEIGHT = 80, 20
+NUM_BOIDS = 5
 BOID_SPEED = 2
-NEIGHBOR_DISTANCE = 50
-NUM_ITERATIONS = 500  # Adjust as needed
-
-# Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
+NEIGHBOR_DISTANCE = 5
+NUM_ITERATIONS = 500
 
 # Boid class
 class Boid:
@@ -55,38 +47,28 @@ class Boid:
 # Create a flock of boids
 flock = [Boid() for _ in range(NUM_BOIDS)]
 
-# Set up the Pygame window
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Basic Boids Simulation")
-clock = pygame.time.Clock()
-
 # Main loop
-running = True
 iteration = 0
-
-while running and iteration < NUM_ITERATIONS:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+while iteration < NUM_ITERATIONS:
+    os.system('clear')  # For Linux
 
     # Update boids
     for boid in flock:
         boid.update(flock)
 
-    # Draw boids
-    screen.fill(BLACK)
-    for boid in flock:
-        pygame.draw.circle(screen, WHITE, (int(boid.x), int(boid.y)), BOID_RADIUS)
+    # Display boids in the terminal
+    for y in range(HEIGHT):
+        row = ""
+        for x in range(WIDTH):
+            for boid in flock:
+                if int(boid.x) == x and int(boid.y) == y:
+                    row += "o"
+                    break
+            else:
+                row += " "
+        print(row)
 
-    # Display status
-    status_text = f"Iteration: {iteration}/{NUM_ITERATIONS}"
-    font = pygame.font.Font(None, 36)
-    status_surface = font.render(status_text, True, WHITE)
-    screen.blit(status_surface, (10, 10))
-
-    pygame.display.flip()
-    clock.tick(FPS)
+    # Wait for a short time to observe the movement
+    time.sleep(0.1)
 
     iteration += 1
-
-pygame.quit()
