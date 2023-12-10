@@ -1,6 +1,6 @@
 import pygame
 import random
-import math
+import numpy as np
 
 # Initialize Pygame
 pygame.init()
@@ -27,7 +27,7 @@ class Boid:
     def __init__(self):
         self.x = random.randint(0, WIDTH)
         self.y = random.randint(0, HEIGHT)
-        self.angle = random.uniform(0, 2 * math.pi)
+        self.angle = random.uniform(0, 2 * np.pi)
 
     def update(self, flock):
         separation_vector = self.separation(flock)
@@ -37,8 +37,8 @@ class Boid:
         self.angle += separation_vector + alignment_vector + cohesion_vector
 
         # Move boid based on angle (with wrapping around screen)
-        self.x += BOID_SPEED * math.cos(self.angle)
-        self.y += BOID_SPEED * math.sin(self.angle)
+        self.x += BOID_SPEED * np.cos(self.angle)
+        self.y += BOID_SPEED * np.sin(self.angle)
 
         # Wrap around screen
         self.x %= WIDTH
@@ -48,11 +48,11 @@ class Boid:
         separation_vector = 0
 
         for other in flock:
-            distance = math.hypot(self.x - other.x, self.y - other.y)
+            distance = np.hypot(self.x - other.x, self.y - other.y)
 
             if 0 < distance < SEPARATION_DISTANCE:
-                angle_diff = math.atan2(self.y - other.y, self.x - other.x)
-                separation_vector += math.pi - abs(abs(self.angle - angle_diff) - math.pi)
+                angle_diff = np.arctan2(self.y - other.y, self.x - other.x)
+                separation_vector += np.pi - np.abs(np.abs(self.angle - angle_diff) - np.pi)
 
         return SEPARATION_WEIGHT * separation_vector
 
@@ -60,7 +60,7 @@ class Boid:
         alignment_vector = 0
 
         for other in flock:
-            distance = math.hypot(self.x - other.x, self.y - other.y)
+            distance = np.hypot(self.x - other.x, self.y - other.y)
 
             if 0 < distance < ALIGNMENT_DISTANCE:
                 alignment_vector += other.angle
@@ -71,7 +71,7 @@ class Boid:
         cohesion_vector = 0
 
         for other in flock:
-            distance = math.hypot(self.x - other.x, self.y - other.y)
+            distance = np.hypot(self.x - other.x, self.y - other.y)
 
             if 0 < distance < COHESION_DISTANCE:
                 cohesion_vector += other.angle
