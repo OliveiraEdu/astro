@@ -10,7 +10,7 @@ def generate_fire_frame(width, height):
 
     # Set the bottom row to represent the fire base
     for i in range(width):
-        frame[height - 1][i] = '*'
+        frame[height - 1][i] = 4  # Set the intensity to the maximum value
 
     # Generate the fire effect
     for row in range(height - 2, 0, -1):
@@ -20,6 +20,7 @@ def generate_fire_frame(width, height):
             frame[row][col] = max(0, avg_intensity - rand_offset)
 
     return frame
+
 
 def display_fire_animation(width, height, duration_sec):
     frames = []
