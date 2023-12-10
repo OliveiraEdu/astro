@@ -6,7 +6,7 @@ def clear_screen():
     os.system('clear' if os.name == 'posix' else 'cls')
 
 def generate_fire_frame(width, height):
-    frame = [[' ' for _ in range(width)] for _ in range(height)]
+    frame = [[0 for _ in range(width)] for _ in range(height)]
 
     # Set the bottom row to represent the fire base
     for i in range(width):
