@@ -12,7 +12,6 @@ NUM_BOIDS = 50
 BOID_RADIUS = 5
 BOID_SPEED = 2
 NEIGHBOR_DISTANCE = 50
-NUM_ITERATIONS = 50
 
 # Colors
 WHITE = (255, 255, 255)
@@ -62,9 +61,7 @@ clock = pygame.time.Clock()
 
 # Main loop
 running = True
-iteration = 0
-
-while running and iteration < NUM_ITERATIONS:
+while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -79,14 +76,7 @@ while running and iteration < NUM_ITERATIONS:
         pygame.draw.circle(screen, WHITE, (int(boid.x), int(boid.y)), BOID_RADIUS)
 
     # Display status
-    status_text = f"Iteration: {iteration}/{NUM_ITERATIONS}"
-    font = pygame.font.Font(None, 36)
-    status_surface = font.render(status_text, True, WHITE)
-    screen.blit(status_surface, (10, 10))
-
     pygame.display.flip()
     clock.tick(FPS)
-
-    iteration += 1
 
 pygame.quit()
