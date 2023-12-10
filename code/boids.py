@@ -6,10 +6,10 @@ import time
 # Constants
 _, WIDTH = os.popen('stty size', 'r').read().split()
 WIDTH = int(WIDTH)
-HEIGHT = 20
+HEIGHT = 40
 NUM_BOIDS = 50  # Increase the number of boids
 BOID_SPEED = 2
-NEIGHBOR_DISTANCE = 5
+NEIGHBOR_DISTANCE = 6
 LEADER_COLOR = 'red'
 
 # Boid class
