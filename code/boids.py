@@ -36,13 +36,9 @@ class Boid:
 
         self.angle += separation_vector + alignment_vector + cohesion_vector
 
-        # Move boid based on angle
-        self.x += BOID_SPEED * math.cos(self.angle)
-        self.y += BOID_SPEED * math.sin(self.angle)
-
-        # Wrap around screen edges
-        self.x %= WIDTH
-        self.y %= HEIGHT
+        # Move boid based on angle (with wrapping around screen)
+        self.x += BOID_SPEED * math.cos(self.angle) % WIDTH
+        self.y += BOID_SPEED * math.sin(self.angle) % HEIGHT
 
     def separation(self, flock):
         separation_vector = 0
