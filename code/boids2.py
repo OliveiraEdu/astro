@@ -45,7 +45,7 @@ class Boid:
             if 0 < distance < NEIGHBOR_DISTANCE:
                 alignment_vector += other.angle
 
-        return alignment_vector / len(flock)
+        return alignment_vector / max(1, len(flock))  # Ensure not dividing by zero
 
 # Create a flock of boids
 flock = [Boid() for _ in range(NUM_BOIDS)]
